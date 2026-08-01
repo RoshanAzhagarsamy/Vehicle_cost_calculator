@@ -1,45 +1,33 @@
-print("Hello Roshan")
-company = "Aachi"
-vehicle = "TN02BV2890"
-driver = "Roshan"
-source = "Chennai"
-destination = "Madurai"
-distance = 450
-mileage = 7
-diesel_price = 100
-print("Company    :", company)
-print("Vehicle    :", vehicle)
-print("Driver     :", driver)
-print("Source     :", source)
-print("Destination:", destination)
-print("Distance   :", distance)
-print("Mileage    :", mileage)
-print("Diesel Price:", diesel_price)
+from calculator import calculate_trip_cost
 
-print(type(company))
-print(type(distance))
-print(type(diesel_price))
-
-trip_no = 125
-vehicle_weight = 8.75
-trip_completed = True
-
-trip_details = trip_no * vehicle_weight
-print("Trip Details:", trip_details)
-
-diesel_used = distance / mileage
-diesel_cost = diesel_used * diesel_price
-print("Distance:", distance)
-print("Mileage:", mileage)
-print("Diesel Price:", diesel_price)
-print("Diesel Used:", diesel_used)
-print("Diesel Cost:", diesel_cost)
 print("================================")
-print("VEHICLE COST CALCULATION")
+print(" VEHICLE COST CALCULATOR")
 print("================================")
 
-print("Distance:", distance, "km")
-print("Mileage:", mileage, "km/l")
-print("Diesel Price:", round(diesel_price, 2), "per litre")
-print("Diesel Used:", round(diesel_used, 2), "litres")
-print("Diesel Cost:", round(diesel_cost, 2), "INR")
+trip_distance = float(input("Enter Distance (KM): "))
+vehicle_mileage = float(input("Enter Mileage (KM/L): "))
+diesel_price = float(input("Enter Diesel Price (₹): "))
+
+if trip_distance <= 0:
+    print("❌ Distance must be greater than 0")
+
+elif vehicle_mileage <= 0:
+    print("❌ Mileage must be greater than 0")
+
+elif diesel_price <= 0:
+    print("❌ Diesel Price must be greater than 0")
+
+else:
+    diesel_used, diesel_cost = calculate_trip_cost(
+        trip_distance,
+        vehicle_mileage,
+        diesel_price
+    )
+
+    print()
+    print("========== RESULTS ==========")
+    print("Distance     :", trip_distance, "KM")
+    print("Mileage      :", vehicle_mileage, "KM/L")
+    print("Diesel Price : ₹", diesel_price)
+    print("Diesel Used  :", round(diesel_used, 2), "Litres")
+    print("Diesel Cost  : ₹", round(diesel_cost, 2))
